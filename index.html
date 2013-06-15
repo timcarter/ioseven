@@ -12,16 +12,10 @@
 				font-size:10em;
 				/*background:#f1c40f; /* sun flower */
 				/*background:#d60062;*/
-				background:#9702a7;
+				background:#8bea00;
 				color:#ecf0f1; /* clouds */
 				/*word-wrap:break-word;*/
 				overflow:hidden;
-			}
-
-			.main {
-				position:relative;
-				width:100%;
-				height:100%;
 			}
 
 			.overlay {
@@ -43,9 +37,19 @@
 				box-orient: vertical;
 			}
 
+			.main {
+				position:relative;
+				width:100%;
+				height:100%;
+			}
+
 			.start {
 				/*background:#62016d;*/
-				background:#8bea00;
+				background:#d60062;
+			}
+
+			.fin {
+				background:#9702a7;
 			}
 
 			#rest {
@@ -229,19 +233,19 @@
 				width:8.333%;
 			}
 
-			.progressDone {
+			.progressCell {
 				/*background:#e67e22; /* carrot */
 				/*background:#8b003f;*/
-				background:#62016d;
+				background:#5a9800;
 			}
 
 			.progressInProgress {
 				/*background:#2ecc71; /* emerald */
 				/*background:#aaf53d;*/
-				background:#c861d3;
+				background:#bef56e;
 			}
 
-			.restDone {
+			.restCell {
 				background:#a60000;
 			}
 
@@ -270,52 +274,61 @@
 				width:100%;
 				text-align:center;
 			}
+
+			#line1, #line2 {
+				font-size:.5em;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="overlay start">
 			<div class="button startButton">Go</div>
 		</div>
+		<div class="overlay fin" style="display:none;">
+			<div class="button finButton">Fin</div>
+		</div>
 		<div class="overlay" id="rest" style="display:none;">
 			<div class="button restTimer"></div>
 			<ul class="cellContainer">
-				<li id="restCell0" class="cell"></li>
-				<li id="restCell1" class="cell"></li>
-				<li id="restCell2" class="cell"></li>
-				<li id="restCell3" class="cell"></li>
-				<li id="restCell4" class="cell"></li>
-				<li id="restCell5" class="cell"></li>
-				<li id="restCell6" class="cell"></li>
-				<li id="restCell7" class="cell"></li>
-				<li id="restCell8" class="cell"></li>
-				<li id="restCell9" class="cell"></li>
-				<li id="restCell10" class="cell"></li>
-				<li id="restCell11" class="cell"></li>
+				<li id="restCell0" class="cell restCell"></li>
+				<li id="restCell1" class="cell restCell"></li>
+				<li id="restCell2" class="cell restCell"></li>
+				<li id="restCell3" class="cell restCell"></li>
+				<li id="restCell4" class="cell restCell"></li>
+				<li id="restCell5" class="cell restCell"></li>
+				<li id="restCell6" class="cell restCell"></li>
+				<li id="restCell7" class="cell restCell"></li>
+				<li id="restCell8" class="cell restCell"></li>
+				<li id="restCell9" class="cell restCell"></li>
+				<li id="restCell10" class="cell restCell"></li>
+				<li id="restCell11" class="cell restCell"></li>
 			</ul>
 		</div>
 		<div class="overlay main">
-			<div id="name"></div>
-			<div id="timer"></div>
+			<div id="line1"></div>
+			<div class="button" id="timer"></div>
+			<div id="line2"></div>
 			<ul class="cellContainer">
-				<li id="progressCell0" class="cell"></li>
-				<li id="progressCell1" class="cell"></li>
-				<li id="progressCell2" class="cell"></li>
-				<li id="progressCell3" class="cell"></li>
-				<li id="progressCell4" class="cell"></li>
-				<li id="progressCell5" class="cell"></li>
-				<li id="progressCell6" class="cell"></li>
-				<li id="progressCell7" class="cell"></li>
-				<li id="progressCell8" class="cell"></li>
-				<li id="progressCell9" class="cell"></li>
-				<li id="progressCell10" class="cell"></li>
-				<li id="progressCell11" class="cell"></li>
+				<li id="progressCell0" class="cell progressCell"></li>
+				<li id="progressCell1" class="cell progressCell"></li>
+				<li id="progressCell2" class="cell progressCell"></li>
+				<li id="progressCell3" class="cell progressCell"></li>
+				<li id="progressCell4" class="cell progressCell"></li>
+				<li id="progressCell5" class="cell progressCell"></li>
+				<li id="progressCell6" class="cell progressCell"></li>
+				<li id="progressCell7" class="cell progressCell"></li>
+				<li id="progressCell8" class="cell progressCell"></li>
+				<li id="progressCell9" class="cell progressCell"></li>
+				<li id="progressCell10" class="cell progressCell"></li>
+				<li id="progressCell11" class="cell progressCell"></li>
 			</ul>
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script>
 			$(function() {
 				var startButtonNode = $('.startButton')[0],
-					nameNode = $('#name')[0],
+					line1Node = $('#line1')[0],
+					line2Node = $('#line2')[0],
 					timerNode = $('#timer')[0],
 					restTimer = $('.restTimer')[0],
 					$restNode = $('#rest'),
@@ -350,29 +363,29 @@
 					],
 
 					config = [
-						{name:'Jumping Jacks'},
-						{name:'Wall Sit'},
-						{name:'Push-Up'},
-						{name:'Abdominal Crunch'},
-						{name:'Chair Step'},
-						{name:'Squat'},
-						{name:'Chair Triceps Dip'},
-						{name:'Plank'},
-						{name:'High Knees Running'},
-						{name:'Lunge'},
-						{name:'Push-Up + Rotation'},
-						{name:'Side Plank'}
+						{line1:'Jumping', line2:'Jacks'},
+						{line1:'Wall', line2:'Sit'},
+						{line1:'Push', line2:'Up'},
+						{line1:'Ab', line2:'Crunch'},
+						{line1:'Chair', line2:'Step'},
+						{line1:'Squat'},
+						{line1:'Triceps', line2:'Dip'},
+						{line1:'Plank'},
+						{line1:'Knees', line2:'Running'},
+						{line1:'Lunge'},
+						{line1:'Push Up', line2:'Rotation'},
+						{line1:'Side', line2:'Plank'}
 					],
 					configLength = config.length,
 					curr,
 					currIndex = 0,
 					progressInprogressClasses = 'cell progressInProgress',
-					progressDoneClasses = 'cell progressDone',
+					progressDoneClasses = 'cell progressCell',
 					restInprogressClasses = "cell restInProgress",
-					restDoneClasses = "cell restDone",
+					restDoneClasses = "cell restCell",
 
-					exerciseLength = 5, // 30
-					restLength = 5,
+					exerciseLength = 2, // 30
+					restLength = 1,
 					oneSecond = 1000,
 
 					countdown = function(num) {
@@ -388,13 +401,19 @@
 						if (currIndex < configLength) {
 							curr = config[currIndex];
 
-							nameNode.innerHTML = curr.name;
+							line1Node.innerHTML = curr.line1;
+							line2Node.innerHTML = curr.line2 || '&nbsp;';
 							progressCellNodes[currIndex].className = progressInprogressClasses;
 
 							runTimer(0);
 						} else {
-							startButtonNode.innerHTML = 'GO';
-							$('.start').fadeIn();
+
+							$('.fin').fadeIn(oneSecond, function() {
+								setTimeout(function() {
+									startButtonNode.innerHTML = 'GO';
+									$('.start').fadeIn(500, function() {$('.fin').fadeOut()});
+								}, oneSecond*5);
+							});
 						}
 					},
 					rest = function(num) {
@@ -416,7 +435,7 @@
 						}
 					};
 
-				$('.startButton').click(function() {countdown(7)});
+				$('.startButton').click(function() {countdown(1)});
 
 			});
 		</script>
