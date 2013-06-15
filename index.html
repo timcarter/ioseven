@@ -1,0 +1,424 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>TESTING!!!</title>
+		<link href='http://fonts.googleapis.com/css?family=Snippet|Quicksand:300|Josefin+Sans:100' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			/* http://colorschemedesigner.com/#5a61Tw0w0w0w0 */
+			body {
+				font-family:'Quicksand', sans-serif;
+				margin:0;
+				padding:0;
+				font-size:10em;
+				/*background:#f1c40f; /* sun flower */
+				/*background:#d60062;*/
+				background:#9702a7;
+				color:#ecf0f1; /* clouds */
+				/*word-wrap:break-word;*/
+				overflow:hidden;
+			}
+
+			.main {
+				position:relative;
+				width:100%;
+				height:100%;
+			}
+
+			.overlay {
+				width:100%;
+				height:100%;
+				display: -webkit-box;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				-webkit-box-orient: vertical;
+
+				display: -moz-box;
+				-moz-box-pack: center;
+				-moz-box-align: center;
+				-moz-box-orient: vertical;
+
+				display: box;
+				box-pack: center;
+				box-align: center;
+				box-orient: vertical;
+			}
+
+			.start {
+				/*background:#62016d;*/
+				background:#8bea00;
+			}
+
+			#rest {
+				background:#f00;
+			}
+
+			.button {
+				border-radius:50%;
+				border:6px solid #ecf0f1;
+				width:300px;
+				height:300px;
+				line-height:300px;
+				text-align:center;
+			}
+/*
+			.restButton {
+				background:#c861d3;
+			}
+
+			.startButton {
+				background:#a1285f;
+			}
+
+			.startButton:hover, .startButton:active {
+				/*background:#7ab02c;/
+				background:#9702a7;
+				cursor:pointer;
+			}
+*/
+
+			.startButton:hover {
+				-webkit-transform:translatez(0);
+				-moz-transform:translatez(0);
+				-ms-transform:translatez(0);
+				-o-transform:translatez(0);
+				transform:translatez(0);
+
+				cursor:pointer;
+
+				-webkit-animation-duration:600ms;
+				-webkit-animation-name:pulse;
+				-moz-animation-duration:600ms;
+				-moz-animation-name:pulse;
+				-ms-animation-duration:600ms;
+				-ms-animation-name:pulse;
+				-o-animation-duration:600ms;
+				-o-animation-name:pulse;
+				-webkit-animation-duration:600ms;
+				-webkit-animation-name:pulse;
+			}
+
+			@-webkit-keyframes pulse {
+				from {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+
+				50% {
+					width:350px;
+					height:350px;
+					line-height:350px;
+				}
+
+				to {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+			}
+
+			@-ms-keyframes pulse {
+				from {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+
+				50% {
+					width:350px;
+					height:350px;
+					line-height:350px;
+				}
+
+				to {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+			}
+
+			@-moz-keyframes pulse {
+				from {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+
+				50% {
+					width:350px;
+					height:350px;
+					line-height:350px;
+				}
+
+				to {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+			}
+
+			@-o-keyframes pulse {
+				from {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+
+				50% {
+					width:350px;
+					height:350px;
+					line-height:350px;
+				}
+
+				to {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+			}
+
+			@keyframes pulse {
+				from {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+
+				50% {
+					width:350px;
+					height:350px;
+					line-height:350px;
+				}
+
+				to {
+					width:300px;
+					height:300px;
+					line-height:300px;
+				}
+			}
+
+			.cellContainer {
+				list-style-type:none;
+				position:absolute;
+				bottom:0;
+				width:100%;
+				height:5%;
+				margin:0;
+				padding:0;
+
+				display: -moz-box;
+				display: -webkit-box;
+				display:box;
+
+				-moz-box-orient:horizontal;
+				-webkit-box-orient:horizontal;
+				box-orient:horizontal;
+
+				-moz-box-flex:1;
+				-moz-box-flex:1;
+				box-flex:1;
+
+				-moz-box-align:stretch;
+				-webkit-box-align:stretch;
+				box-align:stretch;
+			}
+
+			.cell {
+				/*background:#8e44ad; /* wisteria */
+				/*background:#9702a7;*/
+				width:8.333%;
+			}
+
+			.progressDone {
+				/*background:#e67e22; /* carrot */
+				/*background:#8b003f;*/
+				background:#62016d;
+			}
+
+			.progressInProgress {
+				/*background:#2ecc71; /* emerald */
+				/*background:#aaf53d;*/
+				background:#c861d3;
+			}
+
+			.restDone {
+				background:#a60000;
+			}
+
+			.restInProgress {
+				background:#ff7373;
+			}
+
+			#timer {
+				-webkit-transform:translatez(0);
+				-moz-transform:translatez(0);
+				-ms-transform:translatez(0);
+				-o-transform:translatez(0);
+				transform:translatez(0);
+			}
+
+			#rest {
+				-webkit-transform:translatez(0);
+				-moz-transform:translatez(0);
+				-ms-transform:translatez(0);
+				-o-transform:translatez(0);
+				transform:translatez(0);
+			}
+
+			#name {
+				text-size:8em;
+				width:100%;
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="overlay start">
+			<div class="button startButton">Go</div>
+		</div>
+		<div class="overlay" id="rest" style="display:none;">
+			<div class="button restTimer"></div>
+			<ul class="cellContainer">
+				<li id="restCell0" class="cell"></li>
+				<li id="restCell1" class="cell"></li>
+				<li id="restCell2" class="cell"></li>
+				<li id="restCell3" class="cell"></li>
+				<li id="restCell4" class="cell"></li>
+				<li id="restCell5" class="cell"></li>
+				<li id="restCell6" class="cell"></li>
+				<li id="restCell7" class="cell"></li>
+				<li id="restCell8" class="cell"></li>
+				<li id="restCell9" class="cell"></li>
+				<li id="restCell10" class="cell"></li>
+				<li id="restCell11" class="cell"></li>
+			</ul>
+		</div>
+		<div class="overlay main">
+			<div id="name"></div>
+			<div id="timer"></div>
+			<ul class="cellContainer">
+				<li id="progressCell0" class="cell"></li>
+				<li id="progressCell1" class="cell"></li>
+				<li id="progressCell2" class="cell"></li>
+				<li id="progressCell3" class="cell"></li>
+				<li id="progressCell4" class="cell"></li>
+				<li id="progressCell5" class="cell"></li>
+				<li id="progressCell6" class="cell"></li>
+				<li id="progressCell7" class="cell"></li>
+				<li id="progressCell8" class="cell"></li>
+				<li id="progressCell9" class="cell"></li>
+				<li id="progressCell10" class="cell"></li>
+				<li id="progressCell11" class="cell"></li>
+			</ul>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			$(function() {
+				var startButtonNode = $('.startButton')[0],
+					nameNode = $('#name')[0],
+					timerNode = $('#timer')[0],
+					restTimer = $('.restTimer')[0],
+					$restNode = $('#rest'),
+					progressNode = $('.progress')[0],
+					progressCellNodes = [
+						document.getElementById('progressCell0'),
+						document.getElementById('progressCell1'),
+						document.getElementById('progressCell2'),
+						document.getElementById('progressCell3'),
+						document.getElementById('progressCell4'),
+						document.getElementById('progressCell5'),
+						document.getElementById('progressCell6'),
+						document.getElementById('progressCell7'),
+						document.getElementById('progressCell8'),
+						document.getElementById('progressCell9'),
+						document.getElementById('progressCell10'),
+						document.getElementById('progressCell11')
+					],
+					restCellNodes = [
+						document.getElementById('restCell0'),
+						document.getElementById('restCell1'),
+						document.getElementById('restCell2'),
+						document.getElementById('restCell3'),
+						document.getElementById('restCell4'),
+						document.getElementById('restCell5'),
+						document.getElementById('restCell6'),
+						document.getElementById('restCell7'),
+						document.getElementById('restCell8'),
+						document.getElementById('restCell9'),
+						document.getElementById('restCell10'),
+						document.getElementById('restCell11')
+					],
+
+					config = [
+						{name:'Jumping Jacks'},
+						{name:'Wall Sit'},
+						{name:'Push-Up'},
+						{name:'Abdominal Crunch'},
+						{name:'Chair Step'},
+						{name:'Squat'},
+						{name:'Chair Triceps Dip'},
+						{name:'Plank'},
+						{name:'High Knees Running'},
+						{name:'Lunge'},
+						{name:'Push-Up + Rotation'},
+						{name:'Side Plank'}
+					],
+					configLength = config.length,
+					curr,
+					currIndex = 0,
+					progressInprogressClasses = 'cell progressInProgress',
+					progressDoneClasses = 'cell progressDone',
+					restInprogressClasses = "cell restInProgress",
+					restDoneClasses = "cell restDone",
+
+					exerciseLength = 5, // 30
+					restLength = 5,
+					oneSecond = 1000,
+
+					countdown = function(num) {
+						if (num) {
+							currIndex = 0;
+							startButtonNode.innerHTML = num--;
+							setTimeout(function() {countdown(num)}, oneSecond);
+						} else {
+							$('.start').fadeOut(oneSecond, function() {run();});
+						}
+					},
+					run = function() {
+						if (currIndex < configLength) {
+							curr = config[currIndex];
+
+							nameNode.innerHTML = curr.name;
+							progressCellNodes[currIndex].className = progressInprogressClasses;
+
+							runTimer(0);
+						} else {
+							startButtonNode.innerHTML = 'GO';
+							$('.start').fadeIn();
+						}
+					},
+					rest = function(num) {
+						if (num < restLength) {
+							restTimer.innerHTML = restLength - num;
+							setTimeout(function() {rest(num+1)}, oneSecond);
+						} else
+							$restNode.fadeOut(500, function() {restCellNodes[currIndex-1].className = restDoneClasses;restTimer.innerHTML = ''; run();});
+					},
+					runTimer = function(num) {
+						if (num < exerciseLength) {
+							timerNode.innerHTML = exerciseLength - num;
+							setTimeout(function() {runTimer(num+1)}, oneSecond);
+						} else {
+							timerNode.innerHTML = '';
+							progressCellNodes[currIndex].className = progressDoneClasses;
+							restCellNodes[currIndex++].className = restInprogressClasses;
+							$restNode.fadeIn(500, function() {rest(0)});
+						}
+					};
+
+				$('.startButton').click(function() {countdown(7)});
+
+			});
+		</script>
+	</body>
+</html>
