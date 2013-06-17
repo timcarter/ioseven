@@ -1,24 +1,33 @@
 <!DOCTYPE>
-<html>
+<html manifest="ioseven.manifest" >
 	<head>
-		<title>TESTING!!!</title>
-		<link href='http://fonts.googleapis.com/css?family=Snippet|Quicksand:300|Josefin+Sans:100' rel='stylesheet' type='text/css'>
+		<title>Seven</title>
+		<link href='http://fonts.googleapis.com/css?family=Quicksand:300' rel='stylesheet' type='text/css'>
 		<style type="text/css">
+			/* icon from designmodo.com */
 			/* http://colorschemedesigner.com/#5a61Tw0w0w0w0 */
+			/* http://freesound.org/people/jorickhoofd/sounds/160052/ */
+			/* http://freesound.org/people/CJ4096/sounds/66717/ */
 			body {
 				font-family:'Quicksand', sans-serif;
 				margin:0;
 				padding:0;
 				font-size:10em;
-				/*background:#f1c40f; /* sun flower */
-				/*background:#d60062;*/
-				background:#8bea00;
 				color:#ecf0f1; /* clouds */
-				/*word-wrap:break-word;*/
 				overflow:hidden;
 			}
 
-			.overlay {
+			.button {
+				border-radius:50%;
+				border:6px solid #ecf0f1;
+				width:300px;
+				height:300px;
+				line-height:300px;
+				text-align:center;
+			}
+
+			#main {
+				position:relative;
 				width:100%;
 				height:100%;
 				display: -webkit-box;
@@ -35,58 +44,35 @@
 				box-pack: center;
 				box-align: center;
 				box-orient: vertical;
-			}
 
-			.main {
-				position:relative;
-				width:100%;
-				height:100%;
+				transition:background-color 100ms;
 			}
 
 			.start {
-				/*background:#62016d;*/
-				background:#d60062;
+				background-color:#d60062;
+			}
+
+			.run {
+				background-color:#8bea00;
 			}
 
 			.fin {
-				background:#9702a7;
+				background-color:#9702a7;
 			}
 
-			#rest {
-				background:#f00;
+			.rest {
+				background-color:#f00;
 			}
 
-			.button {
-				border-radius:50%;
-				border:6px solid #ecf0f1;
-				width:300px;
-				height:300px;
-				line-height:300px;
-				text-align:center;
-			}
-/*
-			.restButton {
-				background:#c861d3;
-			}
-
-			.startButton {
-				background:#a1285f;
-			}
-
-			.startButton:hover, .startButton:active {
-				/*background:#7ab02c;/
-				background:#9702a7;
-				cursor:pointer;
-			}
-*/
-
-			.startButton:hover {
+			#timer {
 				-webkit-transform:translatez(0);
 				-moz-transform:translatez(0);
 				-ms-transform:translatez(0);
 				-o-transform:translatez(0);
 				transform:translatez(0);
+			}
 
+			.start #timer:hover {
 				cursor:pointer;
 
 				-webkit-animation-duration:600ms;
@@ -101,6 +87,7 @@
 				-webkit-animation-name:pulse;
 			}
 
+/* {{ pulse frames */
 			@-webkit-keyframes pulse {
 				from {
 					width:300px;
@@ -200,6 +187,7 @@
 					line-height:300px;
 				}
 			}
+/* pulse frames }} */
 
 			.cellContainer {
 				list-style-type:none;
@@ -228,51 +216,25 @@
 			}
 
 			.cell {
-				/*background:#8e44ad; /* wisteria */
-				/*background:#9702a7;*/
 				width:8.333%;
+
+				transition:background-color 100ms;
 			}
 
-			.progressCell {
-				/*background:#e67e22; /* carrot */
-				/*background:#8b003f;*/
-				background:#5a9800;
+			.run .cell {
+				background-color:#5a9800;
 			}
 
-			.progressInProgress {
-				/*background:#2ecc71; /* emerald */
-				/*background:#aaf53d;*/
-				background:#bef56e;
+			.run .inprogress {
+				background-color:#bef56e;
 			}
 
-			.restCell {
-				background:#a60000;
+			.rest .cell {
+				background-color:#a60000;
 			}
 
-			.restInProgress {
-				background:#ff7373;
-			}
-
-			#timer {
-				-webkit-transform:translatez(0);
-				-moz-transform:translatez(0);
-				-ms-transform:translatez(0);
-				-o-transform:translatez(0);
-				transform:translatez(0);
-			}
-
-			#rest {
-				-webkit-transform:translatez(0);
-				-moz-transform:translatez(0);
-				-ms-transform:translatez(0);
-				-o-transform:translatez(0);
-				transform:translatez(0);
-			}
-
-			#name {
-				text-size:8em;
-				width:100%;
-				text-align:center;
+			.rest .inprogress {
+				background-color:#ff7373;
 			}
 
 			#line1, #line2 {
@@ -281,85 +243,47 @@
 		</style>
 	</head>
 	<body>
-		<div class="overlay start">
-			<div class="button startButton">Go</div>
-		</div>
-		<div class="overlay fin" style="display:none;">
-			<div class="button finButton">Fin</div>
-		</div>
-		<div class="overlay" id="rest" style="display:none;">
-			<div class="button restTimer"></div>
-			<ul class="cellContainer">
-				<li id="restCell0" class="cell restCell"></li>
-				<li id="restCell1" class="cell restCell"></li>
-				<li id="restCell2" class="cell restCell"></li>
-				<li id="restCell3" class="cell restCell"></li>
-				<li id="restCell4" class="cell restCell"></li>
-				<li id="restCell5" class="cell restCell"></li>
-				<li id="restCell6" class="cell restCell"></li>
-				<li id="restCell7" class="cell restCell"></li>
-				<li id="restCell8" class="cell restCell"></li>
-				<li id="restCell9" class="cell restCell"></li>
-				<li id="restCell10" class="cell restCell"></li>
-				<li id="restCell11" class="cell restCell"></li>
-			</ul>
-		</div>
-		<div class="overlay main">
+		<div id="main" class="start">
 			<div id="line1"></div>
-			<div class="button" id="timer"></div>
+			<div class="button" id="timer">...</div>
 			<div id="line2"></div>
 			<ul class="cellContainer">
-				<li id="progressCell0" class="cell progressCell"></li>
-				<li id="progressCell1" class="cell progressCell"></li>
-				<li id="progressCell2" class="cell progressCell"></li>
-				<li id="progressCell3" class="cell progressCell"></li>
-				<li id="progressCell4" class="cell progressCell"></li>
-				<li id="progressCell5" class="cell progressCell"></li>
-				<li id="progressCell6" class="cell progressCell"></li>
-				<li id="progressCell7" class="cell progressCell"></li>
-				<li id="progressCell8" class="cell progressCell"></li>
-				<li id="progressCell9" class="cell progressCell"></li>
-				<li id="progressCell10" class="cell progressCell"></li>
-				<li id="progressCell11" class="cell progressCell"></li>
+				<li id="cell0" class="cell"></li>
+				<li id="cell1" class="cell"></li>
+				<li id="cell2" class="cell"></li>
+				<li id="cell3" class="cell"></li>
+				<li id="cell4" class="cell"></li>
+				<li id="cell5" class="cell"></li>
+				<li id="cell6" class="cell"></li>
+				<li id="cell7" class="cell"></li>
+				<li id="cell8" class="cell"></li>
+				<li id="cell9" class="cell"></li>
+				<li id="cell10" class="cell"></li>
+				<li id="cell11" class="cell"></li>
 			</ul>
 		</div>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script>
-			$(function() {
-				var startButtonNode = $('.startButton')[0],
-					line1Node = $('#line1')[0],
-					line2Node = $('#line2')[0],
-					timerNode = $('#timer')[0],
-					restTimer = $('.restTimer')[0],
-					$restNode = $('#rest'),
-					progressNode = $('.progress')[0],
-					progressCellNodes = [
-						document.getElementById('progressCell0'),
-						document.getElementById('progressCell1'),
-						document.getElementById('progressCell2'),
-						document.getElementById('progressCell3'),
-						document.getElementById('progressCell4'),
-						document.getElementById('progressCell5'),
-						document.getElementById('progressCell6'),
-						document.getElementById('progressCell7'),
-						document.getElementById('progressCell8'),
-						document.getElementById('progressCell9'),
-						document.getElementById('progressCell10'),
-						document.getElementById('progressCell11')
-					],
-					restCellNodes = [
-						document.getElementById('restCell0'),
-						document.getElementById('restCell1'),
-						document.getElementById('restCell2'),
-						document.getElementById('restCell3'),
-						document.getElementById('restCell4'),
-						document.getElementById('restCell5'),
-						document.getElementById('restCell6'),
-						document.getElementById('restCell7'),
-						document.getElementById('restCell8'),
-						document.getElementById('restCell9'),
-						document.getElementById('restCell10'),
-						document.getElementById('restCell11')
+
+			window.onload = function() {
+				var mode = 'start',
+					unlockSound = false,
+					timerNode = document.getElementById('timer'),
+					mainNode = document.getElementById('main'),
+					line1Node = document.getElementById('line1'),
+					line2Node = document.getElementById('line2'),
+					cellNodes = [
+						document.getElementById('cell0'),
+						document.getElementById('cell1'),
+						document.getElementById('cell2'),
+						document.getElementById('cell3'),
+						document.getElementById('cell4'),
+						document.getElementById('cell5'),
+						document.getElementById('cell6'),
+						document.getElementById('cell7'),
+						document.getElementById('cell8'),
+						document.getElementById('cell9'),
+						document.getElementById('cell10'),
+						document.getElementById('cell11')
 					],
 
 					config = [
@@ -367,77 +291,161 @@
 						{line1:'Wall', line2:'Sit'},
 						{line1:'Push', line2:'Up'},
 						{line1:'Ab', line2:'Crunch'},
-						{line1:'Chair', line2:'Step'},
+						{line1:'Chair', line2:'Step', switch:1},
 						{line1:'Squat'},
 						{line1:'Triceps', line2:'Dip'},
 						{line1:'Plank'},
 						{line1:'Knees', line2:'Running'},
-						{line1:'Lunge'},
-						{line1:'Push Up', line2:'Rotation'},
-						{line1:'Side', line2:'Plank'}
+						{line1:'Lunge', switch:1},
+						{line1:'Push Up', line2:'Rotation', switch:1},
+						{line1:'Side', line2:'Plank', switch:1}
 					],
 					configLength = config.length,
 					curr,
+					currSwitch,
 					currIndex = 0,
-					progressInprogressClasses = 'cell progressInProgress',
-					progressDoneClasses = 'cell progressCell',
-					restInprogressClasses = "cell restInProgress",
-					restDoneClasses = "cell restCell",
+					cellClass = 'cell',
+					inprogressClasses = 'cell inprogress',
 
-					exerciseLength = 2, // 30
-					restLength = 1,
+					exerciseLength = 30, // 30
+					restLength = 10, // 10
 					oneSecond = 1000,
+
+					webAudio = window.AudioContext || window.webkitAudioContext,
+					context = webAudio ? new webAudio : null,
+					// [0] = tick, [1] = ding, [2] = switch
+					soundFiles = [
+						'tick.ogg',
+						'ding.ogg',
+						'switch.wav'
+					],
+					sounds = {
+						// the sounds will be stored here
+						// pre-seed so that we can just execute without checking
+						'tick':'',
+						'ding':'',
+						'switch':'',
+					},
+					soundData = [
+						new Uint8Array(new ArrayBuffer(soundFiles[0].length)),
+						new Uint8Array(new ArrayBuffer(soundFiles[1].length)),
+						new Uint8Array(new ArrayBuffer(soundFiles[2].length))
+					],
 
 					countdown = function(num) {
 						if (num) {
 							currIndex = 0;
-							startButtonNode.innerHTML = num--;
+							timerNode.innerHTML = num--;
 							setTimeout(function() {countdown(num)}, oneSecond);
 						} else {
-							$('.start').fadeOut(oneSecond, function() {run();});
+							mainNode.className = mode = 'run';
+							run();
 						}
 					},
 					run = function() {
 						if (currIndex < configLength) {
 							curr = config[currIndex];
+							currSwitch = curr.switch;
 
 							line1Node.innerHTML = curr.line1;
 							line2Node.innerHTML = curr.line2 || '&nbsp;';
-							progressCellNodes[currIndex].className = progressInprogressClasses;
+							if (currIndex > 0) cellNodes[currIndex-1].className = cellClass;
+							cellNodes[currIndex].className = inprogressClasses;
 
 							runTimer(0);
 						} else {
-
-							$('.fin').fadeIn(oneSecond, function() {
-								setTimeout(function() {
-									startButtonNode.innerHTML = 'GO';
-									$('.start').fadeIn(500, function() {$('.fin').fadeOut()});
-								}, oneSecond*5);
-							});
+							timerNode.innerHTML = 'Fin';
+							mainNode.className = 'fin';
+							setTimeout(function() {
+								cellNodes[currIndex-1].className = cellClass;
+								currIndex = 0;
+								mainNode.className = mode = 'start';
+								timerNode.innerHTML = 'Go';
+							}, oneSecond*5);
 						}
 					},
 					rest = function(num) {
 						if (num < restLength) {
-							restTimer.innerHTML = restLength - num;
+							timerNode.innerHTML = restLength - num;
 							setTimeout(function() {rest(num+1)}, oneSecond);
-						} else
-							$restNode.fadeOut(500, function() {restCellNodes[currIndex-1].className = restDoneClasses;restTimer.innerHTML = ''; run();});
+						} else {
+							timerNode.innerHTML = '';
+							currIndex++;
+							mainNode.className = mode = 'run';
+							run();
+						}
 					},
 					runTimer = function(num) {
 						if (num < exerciseLength) {
+							playSound('tick');
+
+							if (num === 15 && currSwitch) {
+								playSound('switch');
+							}
+
 							timerNode.innerHTML = exerciseLength - num;
 							setTimeout(function() {runTimer(num+1)}, oneSecond);
 						} else {
+							playSound('ding');
 							timerNode.innerHTML = '';
-							progressCellNodes[currIndex].className = progressDoneClasses;
-							restCellNodes[currIndex++].className = restInprogressClasses;
-							$restNode.fadeIn(500, function() {rest(0)});
+							line1Node.innerHTML = currIndex < config.length ? config[currIndex+1].line1 : '';
+							line2Node.innerHTML = currIndex < config.length ? config[currIndex+1].line2 || '&nbsp;' : '';
+							mainNode.className = mode = 'rest';
+							rest(0);
+						}
+					},
+					init = function() {
+						timerNode.onclick = timerNode.ontouchstart = function() {
+							if (mode === 'start'){
+
+								if (!unlockSound) {
+									playSound();
+									unlockSound = true;
+								}
+
+								countdown(1); // make 7
+							}
+						};
+						timerNode.innerHTML = 'Go';
+					},
+					playSound = function(sound) {
+						if (context) {
+							var buffer = sounds[sound] || (sound === undefined ? context.createBuffer(1,1,22050) : undefined);
+							if (buffer) {
+								// html5rocks
+								var source = context.createBufferSource();
+								source.buffer = buffer;
+								source.connect(context.destination);
+								source.start(0);
+							}
 						}
 					};
 
-				$('.startButton').click(function() {countdown(1)});
+				// set up sounds
+				if (context) {
 
-			});
+					var numSoundFiles = -1, request = new XMLHttpRequest;
+
+					(function decode () {
+						if (++numSoundFiles < soundFiles.length) {
+							request.open('GET', soundFiles[numSoundFiles], true);
+							request.responseType = 'arraybuffer';
+							request.addEventListener(
+								'load',
+								function(event) {
+									sounds[numSoundFiles === 0 ? 'tick' : numSoundFiles === 1 ? 'ding' : 'switch'] = context.createBuffer(event.target.response, false);
+									decode();
+								},
+								false
+							);
+							request.send();
+						}
+						else {
+							init();
+						}
+					})();
+				} else init();
+			}
 		</script>
 	</body>
 </html>
